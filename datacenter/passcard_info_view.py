@@ -1,7 +1,8 @@
 from datacenter.models import Passcard, Visit
-from datacenter.get_visit_duration import get_duration, is_visit_long
+from datacenter.get_visit_duration import get_duration, is_visit_long, format_duration
 from django.shortcuts import render, get_object_or_404
 
+SUSPICIOUS_DURATION_SECONDS = 3600
 
 def passcard_info_view(request, passcode):
 
@@ -12,8 +13,8 @@ def passcard_info_view(request, passcode):
 
     for visit in visits:
         duration = get_duration(visit)
-        formatted_duration = f"{int(duration // 3600):02}:{int((duration % 3600) // 60):02}:{int(duration % 60):02}"
-        is_strange = is_visit_long(visit)
+        formatted_duration = format_duration(duration)
+        is_strange = duration > SUSPICIOUS_DURATION_SECONDS
 
         visit_info = {
             'entered_at': visit.entered_at.strftime('%d-%m-%Y'),
