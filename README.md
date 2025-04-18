@@ -4,7 +4,7 @@ This is an educational project that simulates the operation of a bank's security
 
 ## 📂 Project Structure
 
-```
+```bash
 .
 ├── datacenter/                     # Django app with business logic and data views
 │   ├── active_passcards_view.py   # View displaying currently active passcards
@@ -93,15 +93,13 @@ After starting the server, open your browser and go to [http://0.0.0.0:8000/](ht
 - Secrets and credentials are stored securely in the `.env` file.
 - The project is simplified for educational purposes and may omit some production-level features.
 
-
-
 # 🛡️ Система контроля доступа (Django)
 
 Это учебный проект, эмулирующий работу системы безопасности в банке. С помощью Django и PostgreSQL реализована имитация пропускной системы: можно отслеживать, кто находится внутри помещения, как долго длился визит, и просматривать детали по каждому пропуску.
 
 ## 📂 Структура проекта
 
-```
+```bash
 .
 ├── datacenter/                     # Django-приложение с бизнес-логикой и отображением данных
 │   ├── active_passcards_view.py   # Вьюшка, отображающая активные пропуски

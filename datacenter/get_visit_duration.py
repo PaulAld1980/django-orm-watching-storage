@@ -1,8 +1,10 @@
 from django.utils.timezone import now
 
+SECONDS_IN_MINUTE = 60
+SECONDS_IN_HOUR = 3600
+
 
 def get_duration(visit):
-
     if not visit.leaved_at:
         duration = now() - visit.entered_at
     else:
@@ -11,13 +13,12 @@ def get_duration(visit):
 
 
 def is_visit_long(visit):
-    duration = get_duration(visit)
-    return duration > 3600
+    return get_duration(visit) > SECONDS_IN_HOUR
 
 
 def format_duration(duration):
+    hours = int(duration // SECONDS_IN_HOUR)
+    minutes = int((duration % SECONDS_IN_HOUR) // SECONDS_IN_MINUTE)
+    seconds = int(duration % SECONDS_IN_MINUTE)
 
-    hours = int(duration // 3600)
-    minutes = int((duration % 3600) // 60)
-    seconds = int(duration % 60)
-    return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+    return f'{hours:02d}:{minutes:02d}:{seconds:02d}'
